@@ -54,7 +54,7 @@ Take a look at 'example' directory to see examples.
 Options
 -------
 
-Available options to tune your ToolTip are:
+Available options to tune your ToolTips are:
 
     url: null       // URL used to retrieve a tooltip text based on an associated tooltip title attribute using AJAX.
                     // When using local data, title attribute is used for tooltip title and href attribute is used for

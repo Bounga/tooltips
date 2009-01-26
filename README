@@ -33,18 +33,21 @@ It'll build a YUI compressed version of the lib in 'dist' directory. You'll also
 Usage Example
 -------------
 
-Drop **mootools** and **mousetracker.js** in your javascripts directory and include it in your XHTML layout :
+Drop **mootools**, **mootools Tip** and **tooltips.js** in your javascripts directory and include it in your XHTML layout :
 
     <script src="javascripts/mootools.js" type="text/javascript" charset="utf-8"></script>
-    <script src="javascripts/mousetracker.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/mootools-more.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/tooltips.js" type="text/javascript" charset="utf-8"></script>
   
-then you can create new MouseTracker instances :
+then you can create new ToolTips instances :
 
-    new Bounga.MouseTracker({delay: 400, color: '#33FF00'});
-    new Bounga.MouseTracker({delay: 300, color: '#FF3300', 'offset': {x: 30, y: -20}, 'size': 10});
-    new Bounga.MouseTracker({delay: 1000, image: 'cat.gif'});
+    new Bounga.ToolTips();
+    new Bounga.ToolTips('span.my_tooltips');
+    new Bounga.ToolTips('.tooltips', {showDelay: 0, hideDelay: 200});
+    new Bounga.ToolTips('.tooltips', {url: '/definitions/'});
+    new Bounga.ToolTips('.tooltips', {onShow: function() { alert('Here is the tooltip') }});
   
-by default, MouseTracker create a square div but you can use an image.
+by default, ToolTips creates tooltips for elements which have 'tooltip' CSS class applied.
 
 Take a look at 'example' directory to see examples.
   
@@ -53,17 +56,16 @@ Options
 
 Available options to tune your MouseTracker are:
 
-    delay: 200                  // Delay between mouse movement stop and start of tracker movements
-    offset: { x : -20, y : 20 } // Offset to apply between mouse and tracker
-    color: '#666'               // Color to fill the div with
-    size: 20                    // Size (width and height) of the div
-    zindex: 20                  // z-index of the div
-    image: null                 // Use an image rather than a div for the tracker
-    id:	null	                // DOM id for the tracker
-    class: null	                // CSS class for the tracker
-    top: -1000	                // Initial 'top' value
-    left: -1000	                // Initial left value
-    position: 'absolute'	    // Positioning method (absolute or relative). Should be left as 'absolute' unless you know what you're doing
+    url: null       // URL used to retrieve a tooltip text based on an associated tooltip title attribute using AJAX.
+                    // When using local data, title attribute is used for tooltip title and href attribute is used for
+                    // tooltip content. You can use a rel attribute to overwrite this content.
+    showDelay: 100  // Delay to apply before showing the tooltip
+    hideDelay: 100  // Delay to apply before hiding the tooltip
+    className: null // CSS class for tooltip container
+    offsets: { x : 16, y : 16 } // The distance between your tooltip and the mouse
+    fixed: false    // If set to true, the toolTip will not follow the mouse
+    onShow: null    // Function which is fired when the tooltip is shown
+    onHide: null    // Function which is fired when the tooltip is being hidden
 
 Other
 -----
